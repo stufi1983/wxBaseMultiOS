@@ -1,0 +1,55 @@
+{
+    "configurations": [
+        {
+            "name": "Win32 MinGW g++",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/src/",
+                "${workspaceFolder}/build/_deps/wxwidgets-src/include/"
+  
+            ],
+            "defines": [
+                "__WXMSW__",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/src/",
+                "${workspaceFolder}/build/_deps/wxwidgets-src/include/"
+            ],
+            "defines": [
+                "__WXOSX_COCOA__",
+                "__WXMAC__",
+                "__WXOSX__"
+            ],
+            "macFrameworkPath": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "clang-x64"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/src/",
+                "${workspaceFolder}/build/_deps/wxwidgets-src/include/"
+            ],
+            "defines": [
+                "__WXGTK__"
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c11",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
