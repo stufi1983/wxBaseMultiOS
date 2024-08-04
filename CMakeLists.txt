@@ -3,14 +3,16 @@ cmake_minimum_required(VERSION 3.7)
 
 project(WxBase)
 
+
+IF (WIN32)
 # Add sources.
 set(
   PROG_SRCS
   src/main.cpp
+  src/rc.rc
 )
 
-IF (WIN32)
-  # Specify the project name.
+# Specify the project name.
   # project(WxBase-win32)
   set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/win_x64)
 
@@ -37,7 +39,7 @@ IF (WIN32)
     # instead of the main function. This is ignored on other systems,
     # so it works on all platforms
 
-  add_executable(${PROJECT_NAME} WIN32 ${PROG_SRCS} manifest.manifest)
+  add_executable(${PROJECT_NAME} WIN32 ${PROG_SRCS})
 
   # Include the wxWidgets use file to initialize various settings.
   #include(wxWidgets)
@@ -61,6 +63,8 @@ IF (WIN32)
     # project(WxBase-linux)
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
 
+  endif()
+
     # Request the required wxWidgets libs.
     find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
 
@@ -74,7 +78,6 @@ IF (WIN32)
 
     # Link required libraries to the executable
     target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
-  endif()
 ENDIF()
   
   # Specify how to install the binary.

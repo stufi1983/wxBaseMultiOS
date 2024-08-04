@@ -1,6 +1,5 @@
-// Start of wxWidgets "Hello World" Program
 #include <wx/wx.h>
-// #include <wx/msw/wx.rc>
+
 class MyApp : public wxApp
 {
 public:

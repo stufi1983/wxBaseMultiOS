@@ -1,0 +1,11 @@
+#define wxUSE_NO_MANIFEST 1
+#include "wx/msw/wx.rc"
+
+#ifdef ISOLATION_AWARE_ENABLED
+#define wxMANIFEST_ID 2
+#else
+#define wxMANIFEST_ID 1
+#endif
+
+wxDEFAULT_FRAME ICON "icon.ico"
+wxMANIFEST_ID 24 "manifest.manifest"

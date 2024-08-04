@@ -1,5 +1,6 @@
 # Welcome to wxWidget Multi OS VSCode
 
+Install VSCode and C/C++ Extensioin Pack.  
 
 ## Linux
 ### Preparation
@@ -15,6 +16,11 @@ build wxWidget, install and set directory in set wxWidget_dir in setting.json
 
 ## Mac
 ### Preparation
+Install brew, follow at https://brew.sh
+Instal wxmac and check installation version
+> brew install wxmac
+> wx-configure --version
+
 in progress
 |                |ASCII                          |HTML                         |
 |----------------|-------------------------------|-----------------------------|
