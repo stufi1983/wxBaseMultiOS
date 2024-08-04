@@ -1,4 +1,5 @@
 {
+    "wxWidget_dir": "C:\\Program Files (x86)\\wxWidgets",
     "C_Cpp.default.compilerPath": "/usr/bin/g++",
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
