@@ -3,16 +3,17 @@ cmake_minimum_required(VERSION 3.7)
 
 project(WxBase)
 
+# Add sources.
+  set(
+    PROG_SRCS
+    src/main.cpp
+    src/rc.rc
+  )
+
 
 IF (WIN32)
-# Add sources.
-set(
-  PROG_SRCS
-  src/main.cpp
-  src/rc.rc
-)
 
-# Specify the project name.
+  # Specify the project name.
   # project(WxBase-win32)
   set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/win_x64)
 
@@ -36,51 +37,34 @@ set(
 
   # Specify what is needed to create the main target.
   # the WIN32 is needed for Windows in order for it to look for WinMain
-    # instead of the main function. This is ignored on other systems,
-    # so it works on all platforms
+  # instead of the main function. This is ignored on other systems,
+  # so it works on all platforms
 
   add_executable(${PROJECT_NAME} WIN32 ${PROG_SRCS})
 
   # Include the wxWidgets use file to initialize various settings.
-  #include(wxWidgets)
+  # include(wxWidgets)
 
   target_link_libraries(${PROJECT_NAME} PRIVATE wxcore wxnet)
 
   ELSE()
-# set stuff for other systems
+  # set stuff for other systems
 
-  if(APPLE)
-    # project(WxBase-mac)
+  if(APPLE) #apple OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
-    # create bundle on apple compiles
-    add_executable(main MACOSX_BUNDLE ${SRCS})
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${PROG_SRCS})
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
 
-    # Set a custom plist file for the app bundle - needed for Mac OS Retina display
-    set_target_properties(main PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
-
-  else()
-
-    # project(WxBase-linux)
+  else() # Linux OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
-
-  endif()
-
-    # Request the required wxWidgets libs.
-    find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
-
-    # Include the wxWidgets use file to initialize various settings.
-    include(${wxWidgets_USE_FILE})
-
-
-    # Specify what is needed to create the main target.
     add_executable(${PROJECT_NAME} ${PROG_SRCS})
 
+  endif() # Apple and Linux
 
-    # Link required libraries to the executable
+    find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
+    include(${wxWidgets_USE_FILE})
     target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 ENDIF()
-  
-  # Specify how to install the binary.
-  install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
-
+#all OS  
+install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
