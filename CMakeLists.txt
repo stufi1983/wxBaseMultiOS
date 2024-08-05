@@ -53,10 +53,8 @@ IF (WIN32)
   if(APPLE) #apple OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
 
-    set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
-    set_source_files_properties(${myApp_ICON} PROPERTIES
-      MACOSX_PACKAGE_LOCATION "Resources")
-
+    set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon_mac.icns)
+    set_source_files_properties(${myApp_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
     set_target_properties(${PROJECT_NAME} PROPERTIES 
       BUNDLE True
@@ -74,11 +72,12 @@ IF (WIN32)
 
   endif() # Apple and Linux
 
-    find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
-    include(${wxWidgets_USE_FILE})
-    target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+  find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
+  include(${wxWidgets_USE_FILE})
+  target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+
+  #create bundle for all binaries
+  install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin BUNDLE DESTINATION usr/bin)
 
 ENDIF()
 
-#create bundle for all binaries
-install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin BUNDLE DESTINATION usr/bin)

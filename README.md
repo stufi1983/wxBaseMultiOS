@@ -5,8 +5,8 @@ Install VSCode and C/C++ Extensioin Pack.
 ## Linux
 ### Preparation
 install:
-> sudo apt-get install build-essential gdb`
-> sudo apt-get install wx
+> sudo apt-get install build-essential gdb ninja-build
+> sudo apt-get install libwxgtk3.*-dev wx3.*-headers
 ### Build using CMake
 Search for Kits, configure and build
 ### Result

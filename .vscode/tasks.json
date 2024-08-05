@@ -70,7 +70,7 @@
 				"-g",
 				"${workspaceFolder}\\src\\*.cpp",
                 "-o",
-                "${fileDirname}\\build\\win_x64\\release\\${fileWorkspaceFolderBasename}.exe",
+                "${workspaceFolder}\\build\\win_x64\\release\\${fileWorkspaceFolderBasename}.exe",
                 "-I",
 				"${workspaceFolder}\\include",
 				"-I",

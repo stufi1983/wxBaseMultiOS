@@ -87,5 +87,6 @@
         "future": "cpp",
         "thread": "cpp",
         "random": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

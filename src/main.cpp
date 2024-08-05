@@ -1,5 +1,5 @@
 #include <wx/wx.h>
-
+#include "../icon_mac_lin.xpm"
 class MyApp : public wxApp
 {
 public:
@@ -27,6 +27,8 @@ enum
 bool MyApp::OnInit()
 {
     MyFrame *frame = new MyFrame();
+    frame->SetIcon(wxICON(icon));
+
     frame->Show(true);
     return true;
 }

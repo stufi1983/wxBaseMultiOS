@@ -7,5 +7,6 @@
 #define wxMANIFEST_ID 1
 #endif
 
-wxDEFAULT_FRAME ICON "icon.ico"
-wxMANIFEST_ID 24 "manifest.manifest"
+wxDEFAULT_FRAME ICON "icon_win.ico"
+icon ICON "icon_win.ico"
+wxMANIFEST_ID 24 "application.manifest"
