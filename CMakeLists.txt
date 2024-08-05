@@ -52,7 +52,12 @@ IF (WIN32)
 
   if(APPLE) #apple OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
-    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${PROG_SRCS})
+
+    set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
+    set_source_files_properties(${myApp_ICON} PROPERTIES
+      MACOSX_PACKAGE_LOCATION "Resources")
+
+
     set_target_properties(${PROJECT_NAME} PROPERTIES 
       BUNDLE True
       MACOSX_BUNDLE_GUI_IDENTIFIER my.domain.style.identifier.${PROJECT_NAME}
@@ -60,6 +65,8 @@ IF (WIN32)
       MACOSX_BUNDLE_BUNDLE_VERSION "0.1"
       MACOSX_BUNDLE_SHORT_VERSION_STRING "0.1"
       MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${myApp_ICON} ${PROG_SRCS})
 
   else() # Linux OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
@@ -70,7 +77,8 @@ IF (WIN32)
     find_package(wxWidgets COMPONENTS core base xrc REQUIRED)
     include(${wxWidgets_USE_FILE})
     target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+
 ENDIF()
 
-#all OS  
+#create bundle for all binaries
 install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
