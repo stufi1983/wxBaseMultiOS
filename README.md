@@ -7,12 +7,24 @@ Install VSCode and C/C++ Extensioin Pack.
 install:
 > sudo apt-get install build-essential gdb`
 > sudo apt-get install wx
+### Build using CMake
+Search for Kits, configure and build
+### Result
+Binary file is available in the build folder
 
 ## Windows
 ### Preparation
-build wxWidget, install and set directory in set wxWidget_dir in setting.json
+### Build
+#### Using CMake
+Search for Kits, configure and build
+This method will fetch wxWidgets from git, it may take a few hours
+#### Using Task
+Assume has wxWidgets is already installed. build wxWidget, install and set directory in set wxWidget_dir in setting.json
 > "wxWidget_dir": "C:\\Program Files (x86)\\wxWidgets",
-> 
+Terminal -> run task -> Windows MinGW Build (or Windows MinGW Release)
+### Result
+Using CMake, binary is in *build/win_x64*
+Whan using Task, binary is in *build/win_x64/debug* for debug build. Or in */src/build/g++/release* (I have diificulty to move it into build/win_x64) 
 
 ## Mac
 ### Preparation
@@ -23,6 +35,14 @@ Instal wxmac and check installation version
 
 set cmake path to VScode if not already in setting.json (Mac only)
 > "cmake.cmakePath": "/usr/local/bin/cmake"
+or edit CMake Tools extension settings
+
+### Build using CMake
+Search for Kits, configure and build
+### Result
+Binary file is available in the *build/mac* folder
+
+# Readme.md Template
 
 in progress
 |                |ASCII                          |HTML                         |
