@@ -21,6 +21,9 @@ Instal wxmac and check installation version
 > brew install wxmac
 > wx-configure --version
 
+set cmake path to VScode if not already in setting.json (Mac only)
+> "cmake.cmakePath": "/usr/local/bin/cmake"
+
 in progress
 |                |ASCII                          |HTML                         |
 |----------------|-------------------------------|-----------------------------|

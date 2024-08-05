@@ -7,7 +7,7 @@ project(WxBase)
   set(
     PROG_SRCS
     src/main.cpp
-    src/rc.rc
+    rc.rc
   )
 
 
@@ -53,7 +53,13 @@ IF (WIN32)
   if(APPLE) #apple OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
     add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${PROG_SRCS})
-    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+    set_target_properties(${PROJECT_NAME} PROPERTIES 
+      BUNDLE True
+      MACOSX_BUNDLE_GUI_IDENTIFIER my.domain.style.identifier.${PROJECT_NAME}
+      MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+      MACOSX_BUNDLE_BUNDLE_VERSION "0.1"
+      MACOSX_BUNDLE_SHORT_VERSION_STRING "0.1"
+      MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
 
   else() # Linux OS
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
