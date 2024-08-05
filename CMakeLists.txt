@@ -81,4 +81,4 @@ IF (WIN32)
 ENDIF()
 
 #create bundle for all binaries
-install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin BUNDLE DESTINATION usr/bin)
