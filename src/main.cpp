@@ -34,7 +34,7 @@ bool MyApp::OnInit()
 }
 
 MyFrame::MyFrame()
-    : wxFrame(nullptr, wxID_ANY, "MinGW CMake")
+    : wxFrame(nullptr, wxID_ANY, "MinGW g++ CMake")
 {
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",

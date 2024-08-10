@@ -1,6 +1,6 @@
 {
     "wxWidget_dir": "C:\\Program Files (x86)\\wxWidgets",
-    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe",
    "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.tabSize": 4,
@@ -88,5 +88,6 @@
         "thread": "cpp",
         "random": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": false,
+    
 }

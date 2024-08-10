@@ -8,22 +8,22 @@
             "name": "(lldb-mac) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/main.app",
+            "program": "${workspaceFolder}/build/mac/WxBase.app",
             "preLaunchTask": "Build with CMake"
         },
         {
             "name": "(lldb-linux) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/main",
+            "program": "${workspaceFolder}/build/linux/WxBase",
             "preLaunchTask": "Build with CMake"
         },
         {
             "cwd": "${workspaceFolder}",
-            "name": "(msvc) Launch",
-            "type": "cppvsdbg",
+            "name": "(lldb-Win) Launch",
+            "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}\\build\\Debug\\main.exe",
+            "program": "${workspaceFolder}\\build\\win_x64\\Debug\\WxBase.exe",
             "preLaunchTask": "Build with CMake"
         }
     ]

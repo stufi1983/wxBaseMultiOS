@@ -1,21 +1,35 @@
 # Specify the minimum version.
 cmake_minimum_required(VERSION 3.7)
 
+# Specify the project name.
+# project(WxBase-win32)
 project(WxBase)
 
 # Add sources.
-  set(
-    PROG_SRCS
-    src/main.cpp
-    rc.rc
-  )
+set(
+  PROG_SRCS
+  src/main.cpp
+  rc.rc
+)
 
+# for auto list all cpp files, using GLOB command
+# file(GLOB PROG_SRCS 
+#   src/*.cpp
+#   rc.rc
+#   )
+
+# the size of a pointer on the target machine
+set(OSBit 32)
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(OSBit 64)
+endif()
+
+set(outputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBit}/${CMAKE_BUILD_TYPE}")
+set(EXECUTABLE_OUTPUT_PATH ${outputDir})
 
 IF (WIN32)
 
-  # Specify the project name.
-  # project(WxBase-win32)
-  set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/win_x64)
+  #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/win_x64)
 
   # set stuff for windows
   set(CMAKE_CXX_STANDARD 20)
@@ -25,7 +39,7 @@ IF (WIN32)
   include(FetchContent)
   set(wxBUILD_SHARED OFF)
 
-  message(WARNING "Fetching wxWidgets from git, this may take a long time...")
+  message(STATUS "Fetching wxWidgets from git, this may take a long time...")
   message(STATUS "Fetching wxWidgets...")
 
   FetchContent_Declare(
@@ -51,10 +65,14 @@ IF (WIN32)
   # set stuff for other systems
 
   if(APPLE) #apple OS
-    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
+    #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
 
     set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon_mac.icns)
-    set_source_files_properties(${myApp_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_source_files_properties(${myApp_ICON} PROPERTIES    
+	    MACOSX_PACKAGE_LOCATION "Resources"
+      )
+
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${myApp_ICON} ${PROG_SRCS})
 
     set_target_properties(${PROJECT_NAME} PROPERTIES 
       BUNDLE True
@@ -62,12 +80,12 @@ IF (WIN32)
       MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
       MACOSX_BUNDLE_BUNDLE_VERSION "0.1"
       MACOSX_BUNDLE_SHORT_VERSION_STRING "0.1"
-      MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+      MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist
+      )
 
-    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${myApp_ICON} ${PROG_SRCS})
 
   else() # Linux OS
-    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
+    #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
     add_executable(${PROJECT_NAME} ${PROG_SRCS})
 
   endif() # Apple and Linux
@@ -77,7 +95,10 @@ IF (WIN32)
   target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 
   #create bundle for all binaries
-  install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin BUNDLE DESTINATION usr/bin)
+  install (TARGETS ${PROJECT_NAME} 
+    RUNTIME DESTINATION bin 
+    BUNDLE DESTINATION usr/bin
+    )
 
 ENDIF()
 
