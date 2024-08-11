@@ -25,6 +25,7 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 endif()
 
 set(outputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBit}/${CMAKE_BUILD_TYPE}")
+set(outputFile "${outputDir}/${PROJECT_NAME}")
 set(EXECUTABLE_OUTPUT_PATH ${outputDir})
 
 IF (WIN32)
@@ -65,7 +66,7 @@ IF (WIN32)
   # set stuff for other systems
 
   if(APPLE) #apple OS
-    #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/mac)
+    set(outputFile "${outputDir}/${PROJECT_NAME}.app")
 
     set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon_mac.icns)
     set_source_files_properties(${myApp_ICON} PROPERTIES    
@@ -85,7 +86,6 @@ IF (WIN32)
 
 
   else() # Linux OS
-    #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/linux)
     add_executable(${PROJECT_NAME} ${PROG_SRCS})
 
   endif() # Apple and Linux
@@ -99,6 +99,10 @@ IF (WIN32)
     RUNTIME DESTINATION bin 
     BUNDLE DESTINATION usr/bin
     )
+  
+  add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND /bin/chmod 775 ${outputFile}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
 
 ENDIF()
-
