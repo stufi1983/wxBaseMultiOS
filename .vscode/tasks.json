@@ -2,30 +2,30 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-            "label": "Build with CMake",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "--build",
-                "build",
-                "-j"
-            ],
-            "group": "build",
-            "dependsOn": [
-                "Configure with CMake"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "Configure with CMake",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "-DCMAKE_BUILD_TYPE=Debug",
-                "-S.",
-                "-Bbuild"
-            ]
-        },
+			"label": "Build with CMake",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"build",
+				"-j"
+			],
+			"group": "build",
+			"dependsOn": [
+				"Configure with CMake"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Configure with CMake",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-S.",
+				"-Bbuild"
+			]
+		},
 		{
 			"type": "cppbuild",
 			"label": "Windows MinGW g++ Debug",
@@ -63,15 +63,15 @@
 		},
 		{
 			"type": "cppbuild",
-            "label": "Windows MinGW g++ Release",
-            "command": "g++.exe",
-            "args": [
-                "-fdiagnostics-color=always",
+			"label": "Windows MinGW g++ Release",
+			"command": "g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
 				"-g",
 				"${workspaceFolder}\\src\\*.cpp",
-                "-o",
-                "${workspaceFolder}\\bin\\win_x64\\release\\${fileWorkspaceFolderBasename}.exe",
-                "-I",
+				"-o",
+				"${workspaceFolder}\\bin\\win_x64\\release\\${fileWorkspaceFolderBasename}.exe",
+				"-I",
 				"${workspaceFolder}\\include",
 				"-I",
 				"${config:wxWidget_dir}\\include",
@@ -83,15 +83,15 @@
 				"wxmsw32u_core",
 				"-l",
 				"wxbase32u"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "compiler: C:\\msys64\\ucrt64\\bin\\g++.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:\\msys64\\ucrt64\\bin\\g++.exe"
 		}
 	]
 }

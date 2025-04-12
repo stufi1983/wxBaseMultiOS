@@ -46,7 +46,7 @@ IF (WIN32)
   FetchContent_Declare(
     wxWidgets
     GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets.git
-    GIT_SHALLOW ON
+    GIT_SHALLOW ON #only downloads the latest commit and its associated files, rather than the entire commit history
   )
   FetchContent_MakeAvailable(wxWidgets)
 

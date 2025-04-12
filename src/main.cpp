@@ -27,7 +27,8 @@ enum
 bool MyApp::OnInit()
 {
     MyFrame *frame = new MyFrame();
-    frame->SetIcon(wxICON(icon));
+    //frame->SetIcon(wxICON(icon));
+    frame->SetIcon(wxIcon("wxDEFAULT_FRAME", wxBITMAP_TYPE_ICO_RESOURCE));
 
     frame->Show(true);
     return true;
