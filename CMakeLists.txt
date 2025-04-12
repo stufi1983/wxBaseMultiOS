@@ -38,7 +38,7 @@ IF (WIN32)
 
  
   include(FetchContent)
-  set(wxBUILD_SHARED OFF)
+  set(wxBUILD_SHARED OFF) # set to ON if you want to use shared libraries
 
   message(STATUS "Fetching wxWidgets from git, this may take a long time...")
   message(STATUS "Fetching wxWidgets...")
@@ -62,8 +62,8 @@ IF (WIN32)
 
   target_link_libraries(${PROJECT_NAME} PRIVATE wxcore wxnet)
 
-  ELSE()
-  # set stuff for other systems
+ELSE()
+# set stuff for other systems
 
   if(APPLE) #apple OS
     set(outputFile "${outputDir}/${PROJECT_NAME}.app")
@@ -94,15 +94,15 @@ IF (WIN32)
   include(${wxWidgets_USE_FILE})
   target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 
-  #create bundle for all binaries
-  install (TARGETS ${PROJECT_NAME} 
-    RUNTIME DESTINATION bin 
-    BUNDLE DESTINATION usr/bin
-    )
-  
   add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND /bin/chmod 775 ${outputFile}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 
+    #create bundle for all binaries
+  install (TARGETS ${PROJECT_NAME} 
+    RUNTIME DESTINATION bin 
+    BUNDLE DESTINATION usr/bin
+    )
+    
 ENDIF()

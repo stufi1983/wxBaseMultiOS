@@ -2,6 +2,33 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Configure with CMake Linux",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-S.",
+				"-Bbuild",
+				"-DCMAKE_CXX_FLAGS=`wx-config --cxxflags`",
+				"-DCMAKE_EXE_LINKER_FLAGS=`wx-config --libs`"
+			]
+		},
+		{
+			"label": "Build with CMake Linux",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"build",
+				"-j"
+			],
+			"group": "build",
+			"dependsOn": [
+				"Configure with CMake Linux"
+			],
+			"problemMatcher": []
+		},
+		{
 			"label": "Build with CMake",
 			"type": "shell",
 			"command": "cmake",
@@ -21,7 +48,7 @@
 			"type": "shell",
 			"command": "cmake",
 			"args": [
-				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_BUILD_TYPE=Release",
 				"-S.",
 				"-Bbuild"
 			]
