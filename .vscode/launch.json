@@ -15,7 +15,7 @@
             "name": "(lldb-linux) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/linux/WxBase",
+            "program": "${workspaceFolder}/bin/Linux64/Debug/WxBase",
             "preLaunchTask": "Build with CMake"
         },
         {
