@@ -1,3 +1,4 @@
 src/build/
 build/
 bin/
+.DS_Store/
