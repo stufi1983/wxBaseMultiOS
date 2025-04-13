@@ -23,7 +23,7 @@
             "name": "(lldb-Win) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}\\build\\win_x64\\Debug\\WxBase.exe",
+            "program": "${workspaceFolder}\\bin\\Windows64\\Debug\\WxBase.exe",
             "preLaunchTask": "Build with CMake"
         }
     ]
